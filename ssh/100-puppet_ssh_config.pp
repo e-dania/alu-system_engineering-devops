@@ -1,10 +1,10 @@
 #this is supposed to help open up my server without required a key using puppet
 class ssh_config {
-  file { '/home/ubuntu/.ssh/config':
+  file { '/etc/ssh/ssh_config':
     ensure  => present,
-    content => "Host 6250-web-01\n  HostName 54.86.217.192\n  User ubuntu\n  IdentityFile ~/.ssh/school\n  PasswordAuthentication no\n",
-    owner   => 'ubuntu',
-    group   => 'ubuntu',
-    mode    => '0600',
+    content => "Host *\n  IdentityFile ~/.ssh/school\n  PasswordAuthentication no\n",
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
   }
 }
