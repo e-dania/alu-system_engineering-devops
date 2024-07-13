@@ -1,3 +1,4 @@
+#this is supposed to help open up my server without required a key using puppet
 class ssh_config {
   file { '/home/ubuntu/.ssh/config':
     ensure  => present,
