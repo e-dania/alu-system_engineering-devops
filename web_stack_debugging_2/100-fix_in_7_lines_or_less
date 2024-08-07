@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Fixes server bug
-chmod 644 /etc/nginx/nginx.conf
-sed -Ei 's/\s*#?\s*user .*/user nginx;/' /etc/nginx/nginx.conf
-sed -Ei 's/(listen (\[::\]:)?80) /\180 /' /etc/nginx/sites-enabled/default
+# Fix this container so that Nginx is running as user "nginx"
 pkill apache2
-su nginx -s /bin/bash -c 'service nginx restart'
+chown -R nginx /etc/nginx
+chmod 770 /etc/nginx/nginx.conf
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+sudo -u nginx service nginx restart
